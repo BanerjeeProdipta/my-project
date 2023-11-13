@@ -49,7 +49,7 @@ const Dashboard = () => {
   return (
     <div className="max-w-6xl mx-auto mt-8 p-4 bg-white/60 shadow-md rounded-md">
       <div>
-        <h2 className="text-3xl font-bold">Dashboard</h2>
+        <h2 className="text-3xl font-bold mb-8">Dashboard</h2>
 
         <div className="flex items-center space-x-2 my-4">
           <label htmlFor="filter">Filter by:</label>
@@ -87,7 +87,7 @@ const Dashboard = () => {
             <tbody>
               {filteredPatients &&
                 filteredPatients.map((patient: Patient) => (
-                  <tr key={patient.id} className="hover:bg-gray-50">
+                  <tr key={patient.id} className="hover:bg-gray-100">
                     <td className="py-2 px-4 border-b flex items-center">
                       <Image
                         src={patient.profile.image}
@@ -114,9 +114,13 @@ const Dashboard = () => {
                     </td>
                     <td className="py-2 px-4 border-b text-left">
                       {patient.profile.newPatient ? (
-                        <p className="text-green-400">Yes</p>
+                        <p className="rounded-full text-center bg-green-400/50 text-xs py-1 w-20">
+                          Yes
+                        </p>
                       ) : (
-                        <p className="text-red-400">No</p>
+                        <p className="rounded-full text-center bg-red-400/50 text-xs py-1 w-20">
+                          No
+                        </p>
                       )}
                     </td>
                   </tr>
