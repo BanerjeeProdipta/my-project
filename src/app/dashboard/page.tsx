@@ -31,22 +31,14 @@ const Dashboard = () => {
 
       const filteredList = patients?.filter((patient) => {
         if (filterType && searchTerm) {
-          return (patient.profile as any)[filterType]
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-        } else if (filterType) {
-          return (patient.profile as any)[filterType]
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-        } else if (searchTerm) {
-          return (
-            patient.profile.firstName
+          if (filterType === "userName")
+            return patient.username
               .toLowerCase()
-              .includes(searchTerm.toLowerCase()) ||
-            patient.profile.lastName
+              .includes(searchTerm.toLowerCase());
+          else
+            return (patient.profile as any)[filterType]
               .toLowerCase()
-              .includes(searchTerm.toLowerCase())
-          );
+              .includes(searchTerm.toLowerCase());
         }
         return true;
       });
@@ -76,8 +68,10 @@ const Dashboard = () => {
             className="border rounded p-1"
           >
             <option value="">Select...</option>
+            <option value="userName">Username</option>
             <option value="firstName">First Name</option>
             <option value="lastName">Last Name</option>
+            <option value="phone">Phone</option>
           </select>
           <input
             type="text"

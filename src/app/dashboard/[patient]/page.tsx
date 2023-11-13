@@ -20,7 +20,7 @@ const Details = () => {
       }
     };
     getPatientDemographics();
-  }, []);
+  }, [id]);
 
   return (
     <div className="max-w-6xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
@@ -42,7 +42,16 @@ const Details = () => {
             </div>
             <div className="mb-2">
               <strong className="text-lg">Diagnosis:</strong>{" "}
-              {patientDetail?.diagnosis.join(", ")}
+              <div className="flex mt-2 flex-wrap">
+                {patientDetail?.diagnosis.map((diagnosis) => (
+                  <p
+                    key={diagnosis}
+                    className="border p-1 mb-2 border-blue-400 mr-2 rounded-full text-xs"
+                  >
+                    {diagnosis.toUpperCase()}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         ))}
