@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const applyFilters = () => {
-      if (!filterType && !searchTerm) {
+      if (!filterType || !searchTerm) {
         setFilteredPatients(patients);
         return;
       }
@@ -30,7 +30,8 @@ const Dashboard = () => {
               .toLowerCase()
               .includes(searchTerm.toLowerCase());
         }
-        return true;
+
+        return;
       });
 
       setFilteredPatients(filteredList);
@@ -52,11 +53,14 @@ const Dashboard = () => {
         <h2 className="text-3xl font-bold mb-8">Dashboard</h2>
 
         <div className="flex items-center space-x-2 my-4">
-          <label htmlFor="filter">Filter by:</label>
+          <label htmlFor="filter" className="text-gray-600">
+            Filter by:
+          </label>
+
           <select
             id="filter"
             onChange={handleFilterChange}
-            className="border rounded p-1"
+            className="border rounded p-1 h-8 focus:outline-none focus:ring focus:border-blue-300"
           >
             <option value="">Select...</option>
             <option value="userName">Username</option>
@@ -64,15 +68,20 @@ const Dashboard = () => {
             <option value="lastName">Last Name</option>
             <option value="phone">Phone</option>
           </select>
+
           <input
             type="text"
             placeholder="Search..."
             onChange={handleSearchChange}
-            className="border rounded p-1"
+            disabled={!filterType}
+            className="border rounded p-1 h-8 focus:outline-none focus:ring focus:border-blue-300 disabled:cursor-not-allowed"
           />
         </div>
+
         {isLoading ? (
-          <p className="text-sm italic text-gray-600">Loading...</p>
+          <p className="text-sm italic min-w-full bg-white border border-gray-300 text-gray-600 p-6">
+            Loading...
+          </p>
         ) : (
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
