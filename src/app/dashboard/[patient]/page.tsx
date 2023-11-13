@@ -1,12 +1,10 @@
 "use client";
 import { getDetails } from "@/hooks/useGetPatientData";
 import { PatientDemographics } from "@/types";
-import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Details = () => {
-  const pathname = usePathname();
-  const id = pathname.split("/").pop();
+const Details = ({ params }: { params: { patient: string } }) => {
+  const id = params.patient;
 
   const [patientDemographics, setPatientDemographics] =
     useState<PatientDemographics>();
