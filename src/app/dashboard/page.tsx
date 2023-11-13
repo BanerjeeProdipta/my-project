@@ -57,7 +57,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
+    <div className="max-w-6xl mx-auto mt-8 p-4 bg-white/60 shadow-md rounded-md">
       <div>
         <h2 className="text-3xl font-bold">Dashboard</h2>
         <div className="flex items-center space-x-2 my-4">
